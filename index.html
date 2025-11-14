@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Точка 44 — автоматическая заточка коньков за 3 минуты</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Точка 44 — автоматический станок для заточки коньков за 3 минуты. Доступно 24/7, без мастера, безопасно и предсказуемо."
+  />
+  <style>
+    :root {
+      --blue: #2f73ff;
+      --blue-soft: #e6f0ff;
+      --blue-dark: #1f3c7a;
+      --accent: #22c55e;
+      --bg: #f3f4f6;
+      --text-main: #111827;
+      --text-muted: #6b7280;
+      --card-bg: #ffffff;
+      --border-soft: #e5e7eb;
+      --radius-lg: 18px;
+      --radius-xl: 28px;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top left, #f9fafb 0, var(--bg) 50%);
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: 16px;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(
+        to bottom,
+        rgba(243, 244, 246, 0.9),
+        rgba(243, 244, 246, 0.5)
+      );
+      border-bottom: 1px solid rgba(229, 231, 235, 0.7);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      font-size: 14px;
+    }
+
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), #8ab3ff);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-size: 14px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--blue), #7ba9ff);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 40px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: var(--border-soft);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue);
+      color: var(--blue-dark);
+      background: #ffffff;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 48px 0 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(226, 239, 255, 0.9);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: var(--blue-dark);
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin-bottom: 22px;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 26px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .metric {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      background: rgba(255, 255, 255, 0.85);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .metric strong {
+      color: var(--accent);
+      font-size: 15px;
+    }
+
+    .hero-media {
+      position: relative;
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #ffffff, var(--blue-soft));
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      background: rgba(15, 23, 42, 0.04);
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: max-content;
+    }
+
+    .hero-badge span {
+      font-weight: 600;
+      color: var(--blue-dark);
+    }
+
+    .hero-machine {
+      border-radius: 18px;
+      background: linear-gradient(
+        135deg,
+        #ffffff 0,
+        #ffffff 40%,
+        var(--blue-soft) 70%,
+        #dce7ff 100%
+      );
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .machine-block {
+      height: 140px;
+      border-radius: 18px;
+      background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.4),
+          rgba(148, 163, 184, 0.16)
+        ),
+        linear-gradient(90deg, #1e3a8a, #60a5fa);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .machine-block::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 14px;
+      background: #f9fafb;
+    }
+
+    .machine-line {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 26px;
+      height: 20px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #2563eb, #93c5fd);
+    }
+
+    .machine-top {
+      position: absolute;
+      inset: 22px 30px auto;
+      height: 44px;
+      border-radius: 14px;
+      background: #020617;
+    }
+
+    .hero-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .hero-step {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .hero-step-label {
+      color: var(--text-muted);
+    }
+
+    .hero-step-time {
+      font-weight: 600;
+    }
+
+    .hero-step-time span {
+      color: var(--accent);
+    }
+
+    .hero-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .hero-tagline strong {
+      color: var(--blue-dark);
+    }
+
+    /* sections */
+
+    section {
+      padding: 40px 0;
+    }
+
+    .section-header {
+      margin-bottom: 24px;
+    }
+
+    .section-eyebrow {
+      font-size: 13px;
+      color: var(--blue);
+      font-weight: 600;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 6px;
+      color: var(--blue-dark);
+    }
+
+    .section-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.04);
+      font-size: 14px;
+    }
+
+    .card h3 {
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: var(--blue-dark);
+    }
+
+    .card p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .timeline {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px 6px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    .timeline-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .timeline-line {
+      position: relative;
+      height: 2px;
+      background: #e5e7eb;
+      margin: 12px 0 18px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 2px solid var(--blue);
+      transform: translate(-50%, -50%);
+    }
+
+    .timeline-dot:nth-child(1) {
+      left: 5%;
+    }
+
+    .timeline-dot:nth-child(2) {
+      left: 40%;
+    }
+
+    .timeline-dot:nth-child(3) {
+      left: 70%;
+    }
+
+    .timeline-dot:nth-child(4) {
+      left: 95%;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 12px;
+    }
+
+    .timeline-item-title {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .timeline-item-meta {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .timeline-short {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px dashed #e5e7eb;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      font-size: 12px;
+      color: var(--blue-dark);
+    }
+
+    .badge-muted {
+      background: rgba(148, 163, 184, 0.16);
+      color: var(--text-muted);
+    }
+
+    /* Team */
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      font-size: 13px;
+    }
+
+    .team-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 14px;
+      border: 1px solid var(--border-soft);
+    }
+
+    .team-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(226, 232, 240, 0.8);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .team-name {
+      font-weight: 600;
+      color: var(--blue-dark);
+      margin-bottom: 2px;
+    }
+
+    .team-role {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .team-list {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .team-list li::before {
+      content: "• ";
+      color: #9ca3af;
+    }
+
+    /* CTA / footer */
+
+    .cta {
+      margin-top: 12px;
+      border-radius: var(--radius-xl);
+      padding: 22px 18px;
+      background: linear-gradient(120deg, var(--blue), #7ba9ff);
+      color: #ffffff;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 24px 60px rgba(37, 99, 235, 0.45);
+    }
+
+    .cta h2 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .cta p {
+      font-size: 14px;
+      opacity: 0.92;
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cta .btn-primary {
+      background: #ffffff;
+      color: var(--blue-dark);
+      box-shadow: none;
+    }
+
+    .cta .btn-primary:hover {
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.22);
+    }
+
+    .cta .btn-outline {
+      border-color: rgba(219, 234, 254, 0.7);
+      color: #e5edff;
+      background: transparent;
+    }
+
+    footer {
+      padding: 18px 0 28px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    footer a {
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        padding-top: 32px;
+      }
+      .hero-media {
+        order: -1;
+      }
+      .card-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .card-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .team-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .timeline-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .hero-card {
+        padding: 14px;
+      }
+      .cta {
+        padding: 18px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="container nav">
+        <div class="logo">
+          <span class="logo-mark">4</span>
+          <span>Точка&nbsp;44</span>
+        </div>
+        <nav class="nav-links">
+          <a href="#problem">Проблема</a>
+          <a href="#solution">Решение</a>
+          <a href="#proof">Спрос</a>
+          <a href="#business">Бизнес-модель</a>
+          <a href="#team">Команда</a>
+        </nav>
+        <div class="nav-cta">
+          <a href="#contact" class="btn btn-outline">Связаться</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Автоматическая заточка коньков
+            </div>
+            <h1 class="hero-title">
+              Коньки заточены<br />через&nbsp;3&nbsp;минуты. Без мастера. 24/7.
+            </h1>
+            <p class="hero-subtitle">
+              <strong>Точка 44</strong> — автономный станок для заточки коньков.
+              Оплата картой или по QR, безопасная конструкция, предсказуемое
+              качество и доступность в любое время.
+            </p>
+            <div class="nav-cta">
+              <a href="#contact" class="btn btn-primary">Обсудить установку</a>
+              <a href="#solution" class="btn btn-outline">Как это работает</a>
+            </div>
+            <div class="hero-metrics">
+              <div class="metric">
+                <strong>3&nbsp;минуты</strong>
+                <span>вместо 40–60 минут сейчас</span>
+              </div>
+              <div class="metric">
+                <strong>2 конька</strong>
+                <span>одновременно</span>
+              </div>
+              <div class="metric">
+                <strong>24/7</strong>
+                <span>доступ без привязки к мастеру</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-media">
+            <div class="hero-card">
+              <div class="hero-badge">
+                <span>Как меняется жизнь спортсмена</span>
+              </div>
+              <div class="hero-machine">
+                <div class="machine-block">
+                  <div class="machine-top"></div>
+                  <div class="machine-line"></div>
+                </div>
+                <div class="hero-steps">
+                  <div class="hero-step">
+                    <span class="hero-step-label">Шаг 1</span>
+                    <span class="hero-step-time">Оплатил — <span>1 минута</span></span>
+                  </div>
+                  <div class="hero-step">
+                    <span class="hero-step-label">Шаг 2</span>
+                    <span class="hero-step-time">
+                      Станок точит — <span>2 минуты</span>
+                    </span>
+                  </div>
+                  <div class="hero-step">
+                    <span class="hero-step-label">Результат</span>
+                    <span class="hero-step-time">
+                      Коньки заточены — <span>3 минуты</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <p class="hero-tagline">
+                <strong>Без очередей и ожидания мастера.</strong> Спортсмен
+                тратит время на тренировки, а не на заточку.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Проблема</div>
+            <h2 class="section-title">Заточка коньков сегодня — это лотерея</h2>
+            <p class="section-subtitle">
+              Спортсмены тратят до часа на дорогу, поиск мастера и ожидание.
+              График непредсказуем, мастер может быть занят или в отпуске,
+              качество — нестабильно.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-label">Типичный путь спортсмена сейчас</div>
+            <div class="timeline-line">
+              <div class="timeline-dot"></div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-dot"></div>
+              <div class="timeline-dot"></div>
+            </div>
+            <div class="timeline-grid">
+              <div>
+                <div class="timeline-item-title">Коньки затупились</div>
+                <div class="timeline-item-meta">Тренировка под угрозой</div>
+              </div>
+              <div>
+                <div class="timeline-item-title">20–40 минут</div>
+                <div class="timeline-item-meta">
+                  Добраться до мастерской, попасть в её режим
+                </div>
+              </div>
+              <div>
+                <div class="timeline-item-title">5+ минут</div>
+                <div class="timeline-item-meta">Очередь и оплата</div>
+              </div>
+              <div>
+                <div class="timeline-item-title">15 минут</div>
+                <div class="timeline-item-meta">
+                  Мастер точит — если он вообще есть
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-short">
+              <div class="timeline-label">
+                Что говорят спортсмены и родители (50+ интервью, 500+ отзывов):
+              </div>
+              <div class="badges">
+                <span class="badge">нет понятного графика</span>
+                <span class="badge">мастер отсутствует или занят</span>
+                <span class="badge">большие очереди</span>
+                <span class="badge">качество зависит от человека</span>
+                <span class="badge badge-muted">лишние поездки и потраченное время</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Решение</div>
+            <h2 class="section-title">Автомат, который затачивает коньки вместо мастера</h2>
+            <p class="section-subtitle">
+              Точка 44 объединяет промышленный станок, систему автоматической
+              фиксации, смену дисков и удобный интерфейс. Результат — две
+              пары заточенных коньков за 2 минуты после оплаты.
+            </p>
+          </div>
+
+          <div class="card-row">
+            <div class="card">
+              <h3>2 конька за 2 минуты</h3>
+              <p>
+                Параллельная заточка сразу двух коньков. Спортсмен вставляет
+                коньки, выбирает радиус, оплачивает — и через пару минут
+                забирает готовый результат.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Безопасная конструкция</h3>
+              <p>
+                Зоны реза и механика скрыты внутри корпуса. Пользователь
+                взаимодействует только с интерфейсом и фиксаторами коньков.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Простой интерфейс</h3>
+              <p>
+                Экран с пошаговой инструкцией: вставить коньки, выбрать
+                профиль, оплатить, дождаться завершения. Подходит детям и
+                взрослым без обучения.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-row" style="margin-top:18px;">
+            <div class="card">
+              <h3>Автоматическая фиксация</h3>
+              <p>
+                Станок сам позиционирует конек и поддерживает одинаковое
+                качество заточки от раза к разу.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Смена дисков и радиуса</h3>
+              <p>
+                Автоматическая смена заточных дисков и выбор радиуса заточки —
+                для разных стилей катания и требований спортсменов.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Оплата картой или по QR</h3>
+              <p>
+                Интеграция с эквайрингом и владельцем площадки. Никаких наличных,
+                вся аналитика — в цифре.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROOF -->
+      <section id="proof">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Подтверждение спроса</div>
+            <h2 class="section-title">Мы хорошо знаем боль рынка</h2>
+            <p class="section-subtitle">
+              В основе продукта — собственный спортовый опыт и системное
+              исследование: глубинные интервью с игроками и тренерами,
+              анализ сотен отзывов о точильных мастерских.
+            </p>
+          </div>
+
+          <div class="card-row">
+            <div class="card">
+              <h3>Экспертиза изнутри</h3>
+              <p>
+                Сооснователь — мастер спорта по хоккею, игрок ВХЛ и КХЛ.
+                Более 450 матчей на профессиональном уровне и десятки сборов
+                для хоккеистов.
+              </p>
+            </div>
+            <div class="card">
+              <h3>50+ глубинных интервью</h3>
+              <p>
+                Игроки, тренеры, родители, любители. Сформированы приоритеты:
+                доступность заточки, стабильное качество, скорость, цена.
+              </p>
+            </div>
+            <div class="card">
+              <h3>500+ отзывов</h3>
+              <p>
+                Разобрали жалобы на текущие мастерские: неудобный график,
+                закрытые точки без предупреждения, очереди и сорванные тренировки.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BUSINESS MODEL -->
+      <section id="business">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Модель</div>
+            <h2 class="section-title">Как зарабатывает Точка 44</h2>
+            <p class="section-subtitle">
+              Станок становится частью инфраструктуры катка или арены
+              и приносит доход владельцу площадки и оператору сети автоматов.
+            </p>
+          </div>
+
+          <div class="card-row">
+            <div class="card">
+              <h3>Установка на катках и аренах</h3>
+              <p>
+                Размещаем автоматы на частных и муниципальных катках, в
+                спортивных школах и ледовых аренах. Владелец площадки
+                получает долю с каждой транзакции.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Доход от услуги заточки</h3>
+              <p>
+                Основной источник выручки — платная заточка. Прозрачная
+                аналитика по количеству операций, загрузке автоматов и
+                выручке по каждой точке.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Реклама на корпусе автомата</h3>
+              <p>
+                Дополнительный канал монетизации — брендинг и реклама на
+                корпусе: спортивные школы, экипировка, мероприятия.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section id="team">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-eyebrow">Команда</div>
+            <h2 class="section-title">Технологи, спортсмен и продакт</h2>
+            <p class="section-subtitle">
+              Мы вложили несколько лет разработки, собственные средства и уже
+              прошли путь от гипотез к работающему MVP автоматического станка.
+            </p>
+          </div>
+
+          <div class="team-grid">
+            <div class="team-card">
+              <div class="team-chip">Рынок</div>
+              <div class="team-name">Роман Кудинов</div>
+              <div class="team-role">CBDO, мастер спорта по хоккею</div>
+              <ul class="team-list">
+                <li>Игрок ВХЛ, КХЛ, более 450 игр</li>
+                <li>Глубокая экспертиза в требованиях спортсменов</li>
+                <li>Провёл и курировал 5+ сборов для профессионалов</li>
+              </ul>
+            </div>
+
+            <div class="team-card">
+              <div class="team-chip">Рынок</div>
+              <div class="team-name">Анна Иванова</div>
+              <div class="team-role">CEO, стратегия и продвижение</div>
+              <ul class="team-list">
+                <li>Разработка стратегии вывода продукта</li>
+                <li>Финансовое моделирование и юнит-экономика</li>
+                <li>Опыт работы с десятками стартапов и акселераторов</li>
+              </ul>
+            </div>
+
+            <div class="team-card">
+              <div class="team-chip">Технология</div>
+              <div class="team-name">Андрей Березин</div>
+              <div class="team-role">CTO, механика и электроника</div>
+              <ul class="team-list">
+                <li>Проектирование и тестирование механической части станка</li>
+                <li>Опыт внедрения технологического оборудования</li>
+                <li>Курирование разработки программной части</li>
+              </ul>
+            </div>
+
+            <div class="team-card">
+              <div class="team-chip">Технология</div>
+              <div class="team-name">Степан Данилов</div>
+              <div class="team-role">Менеджер продукта</div>
+              <ul class="team-list">
+                <li>Постановка технологии на производство</li>
+                <li>Опыт привлечения инвестиций и запуска серий</li>
+                <li>Управление проектами с крупными промышленными заказчиками</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="container">
+          <div class="cta">
+            <div>
+              <h2>Хотите такой автомат на своём катке?</h2>
+              <p>
+                Оставьте контакты в issue или добавьте ссылку на форму —
+                и мы обсудим пилотный запуск Точка 44 на вашей площадке.
+              </p>
+            </div>
+            <div class="cta-actions">
+              <!-- Замените ссылку на вашу форму/почту/телеграм -->
+              <a href="mailto:info@example.com" class="btn btn-primary">
+                Написать команде
+              </a>
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-outline"
+              >
+                Перейти к репозиторию
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div>© <span id="year"></span> Точка 44</div>
+        <div>
+          Лендинг размещён на GitHub Pages.
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // актуальный год в футере
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
