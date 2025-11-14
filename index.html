@@ -5,141 +5,327 @@
   <title>Точка 44 — автоматическая заточка коньков за 2 минуты</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
-    :root {
-      --blue: #2f73ff;
-      --blue-dark: #1f3c7a;
-      --bg: #f3f4f6;
-      --text: #111827;
-      --muted: #6b7280;
-      --card: #ffffff;
-      --border: #e5e7eb;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top left, #f9fafb 0, var(--bg) 55%);
-      color: var(--text);
-      line-height: 1.5;
+      background: #f5f5f7;
+      color: #111827;
+      line-height: 1.6;
     }
 
     .page {
       min-height: 100vh;
       display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #e5e7eb;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
+      justify-content: space-between;
+      gap: 16px;
     }
 
-    .card {
-      max-width: 720px;
-      width: 100%;
-      background: var(--card);
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-      padding: 24px 22px 20px;
+    .logo {
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 14px;
     }
 
-    h1 {
-      font-size: 24px;
-      margin-bottom: 10px;
-      color: var(--blue-dark);
+    nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
     }
 
-    h2 {
+    nav a {
+      text-decoration: none;
+      color: #6b7280;
+      padding: 4px 8px;
+      border-radius: 999px;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    nav a:hover {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    main {
+      flex: 1;
+    }
+
+    .section {
+      padding: 40px 24px;
+    }
+
+    .section-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding-top: 40px;
+      padding-bottom: 32px;
+    }
+
+    .hero-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 32px 28px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    .hero-kicker {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #6b7280;
+      margin-bottom: 12px;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3vw, 32px);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .hero-subtitle {
       font-size: 16px;
-      margin: 18px 0 6px;
-      color: var(--blue-dark);
+      color: #4b5563;
     }
 
-    p {
-      font-size: 14px;
-      color: var(--muted);
-      margin-bottom: 4px;
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 24px;
     }
 
-    ul {
-      list-style: none;
-      margin: 6px 0 0;
-      padding: 0;
-      font-size: 14px;
-      color: var(--muted);
+    .block-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 24px 22px;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.04);
     }
 
-    li {
+    .block-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .list {
+      display: grid;
+      gap: 10px;
+      font-size: 15px;
+      color: #374151;
+    }
+
+    .list-item {
       position: relative;
-      padding-left: 14px;
-      margin-bottom: 2px;
+      padding-left: 18px;
     }
 
-    li::before {
+    .list-item::before {
       content: "•";
       position: absolute;
       left: 0;
-      color: var(--blue);
+      top: 0;
+      color: #9ca3af;
     }
 
-    .tagline {
-      font-size: 14px;
-      color: var(--muted);
+    .contacts-card {
+      background: #111827;
+      color: #f9fafb;
+      border-radius: 24px;
+      padding: 24px 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .contacts-title {
+      font-size: 18px;
+      font-weight: 600;
       margin-bottom: 4px;
     }
 
-    .tagline strong {
-      color: var(--blue-dark);
+    .contacts-text {
+      font-size: 15px;
+      color: #e5e7eb;
     }
 
-    .contacts {
-      font-size: 14px;
-      margin-top: 10px;
+    .contacts-links {
+      display: grid;
+      gap: 4px;
+      font-size: 15px;
     }
 
-    .contacts span {
-      display: block;
-    }
-
-    a {
-      color: var(--blue);
+    .contacts-links a {
+      color: inherit;
       text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+
+    .contacts-links a:hover {
+      border-color: #f9fafb;
+    }
+
+    footer {
+      padding: 20px 24px 32px;
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .footer-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 16px 18px;
+      }
+
+      .section {
+        padding: 28px 18px;
+      }
+
+      .hero-card {
+        padding: 24px 20px;
+      }
+
+      .block-card,
+      .contacts-card {
+        padding: 20px 18px;
+      }
+
+      .grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      nav {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <main class="card">
-      <h1>Точка 44 — автоматическая заточка коньков за 2 минуты</h1>
-      <p class="tagline">
-        <strong>Коротко:</strong> коньки всегда готовы к льду, без поиска мастера и потери времени.
-      </p>
-
-      <h2>Проблема</h2>
-      <ul>
-        <li>20–40 минут уходит на дорогу и попытку подстроиться под график мастерской.</li>
-        <li>Очереди перед тренировками и массовым катанием, риск опоздать или выйти на лёд с тупыми коньками.</li>
-        <li>Качество зависит от одного мастера: сегодня нормально, завтра — уже не так.</li>
-      </ul>
-
-      <h2>Продукт</h2>
-      <p>
-        <strong>Точка 44</strong> — автономный станок на катке, который заменяет классическую мастерскую
-        и за 2&nbsp;минуты даёт предсказуемую заточку.
-      </p>
-      <ul>
-        <li>2 конька за 2 минуты — быстрый оборот и отсутствие очередей.</li>
-        <li>Работает 24/7: доступен когда идут тренировки и массовое катание, а не только «по расписанию».</li>
-        <li>Закрытая безопасная конструкция и простой сценарий: вставить коньки → выбрать режим → подождать 2 минуты.</li>
-        <li>Оплата банковской картой или по QR-коду, вся выручка прозрачно учитывается.</li>
-      </ul>
-
-      <h2>Контакты</h2>
-      <div class="contacts">
-        <span>По вопросам установки и пилотных проектов:</span>
-        <span>Email: <a href="mailto:anna.dm.ivanova@mail.ru">anna.dm.ivanova@mail.ru</a></span>
-        <span>Telegram: <a href="https://t.me/a_iva_nova" target="_blank" rel="noopener">t.me/a_iva_nova</a></span>
+    <header>
+      <div class="header-inner">
+        <div class="logo">Точка 44</div>
+        <nav>
+          <a href="#problem">Проблема</a>
+          <a href="#product">Продукт</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
       </div>
+    </header>
+
+    <main>
+      <section class="section hero">
+        <div class="section-inner">
+          <div class="hero-card">
+            <div class="hero-kicker">Автоматическая заточка на катке</div>
+            <h1 class="hero-title">
+              Точка 44 — автоматическая заточка коньков за 2 минуты
+            </h1>
+            <p class="hero-subtitle">
+              Коротко: коньки всегда готовы к льду, без поиска мастера и потери времени.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="problem">
+        <div class="section-inner">
+          <div class="grid">
+            <div class="block-card">
+              <h2 class="block-title">Проблема</h2>
+              <div class="list">
+                <div class="list-item">
+                  20–40 минут уходит на дорогу и попытку подстроиться под график мастерской.
+                </div>
+                <div class="list-item">
+                  Очереди перед тренировками и массовым катанием, риск опоздать или выйти на лёд с тупыми коньками.
+                </div>
+                <div class="list-item">
+                  Качество зависит от одного мастера: сегодня нормально, завтра — уже не так.
+                </div>
+              </div>
+            </div>
+
+            <div class="block-card" id="product">
+              <h2 class="block-title">Продукт</h2>
+              <div class="list">
+                <div class="list-item">
+                  Точка 44 — автономный станок на катке, который заменяет классическую мастерскую и за 2 минуты даёт предсказуемую заточку.
+                </div>
+                <div class="list-item">
+                  2 конька за 2 минуты — быстрый оборот и отсутствие очередей.
+                </div>
+                <div class="list-item">
+                  Работает 24/7: доступен когда идут тренировки и массовое катание, а не только «по расписанию».
+                </div>
+                <div class="list-item">
+                  Закрытая безопасная конструкция и простой сценарий: вставить коньки → выбрать режим → подождать 2 минуты.
+                </div>
+                <div class="list-item">
+                  Оплата банковской картой или по QR-коду, вся выручка прозрачно учитывается.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contacts">
+        <div class="section-inner">
+          <div class="contacts-card">
+            <div>
+              <h2 class="contacts-title">Контакты</h2>
+              <p class="contacts-text">
+                По вопросам установки и пилотных проектов:
+              </p>
+            </div>
+            <div class="contacts-links">
+              <p>Email: <a href="mailto:anna.dm.ivanova@mail.ru">anna.dm.ivanova@mail.ru</a></p>
+              <p>Telegram: <a href="https://t.me/a_iva_nova" target="_blank" rel="noopener noreferrer">t.me/a_iva_nova</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>Точка 44 — автоматическая заточка коньков за 2 минуты</span>
+        <span>Работает 24/7 на вашем катке</span>
+      </div>
+    </footer>
   </div>
 </body>
 </html>
